@@ -3,126 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carta</title>
+<title>Carta Inolvidable</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Alex+Brush&display=swap" rel="stylesheet">
 
 <style>
 
 body{
     margin:0;
     padding:0;
-    background:linear-gradient(135deg,#0f0c29,#1a0033,#000);
-    font-family:'Cormorant Garamond', serif;
+    background:#050010;
+    overflow-x:hidden;
+    font-family:'Italiana', serif;
     color:white;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+}
+
+/* Fondo estrellas */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.15;
+    animation:moveStars 60s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-1000px);}
 }
 
 /* VIDEO */
 .video-container{
-    width:100%;
-    max-width:700px;
-    margin-top:30px;
-    border-radius:18px;
+    width:90%;
+    max-width:750px;
+    margin:40px auto;
+    border-radius:25px;
     overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.6);
+    box-shadow:0 20px 60px rgba(128,0,255,0.4);
 }
 
 /* CARTA */
 .carta{
-    margin:50px 20px;
-    padding:60px 30px;
-    max-width:750px;
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(14px);
-    border-radius:30px;
-    box-shadow:0 0 80px rgba(168,85,247,0.15);
+    width:90%;
+    max-width:800px;
+    margin:40px auto 80px auto;
+    padding:70px 40px;
+    background:linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border-radius:35px;
+    box-shadow:0 0 120px rgba(180,120,255,0.15);
+    backdrop-filter:blur(20px);
     position:relative;
 }
 
-/* Línea dorada superior elegante */
-.carta::before{
+/* Luz interior */
+.carta::after{
     content:"";
     position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:120px;
-    height:2px;
-    background:linear-gradient(to right,transparent,gold,transparent);
+    inset:0;
+    border-radius:35px;
+    box-shadow:inset 0 0 80px rgba(168,85,247,0.2);
 }
 
-/* NEÓN MORADO NUEVO ESTILO */
+/* NEON MORADO ESTILO FIRMA */
 .neon-palabra{
-    font-family:'Montserrat', sans-serif;
-    font-weight:500;
-    font-size:42px;
-    letter-spacing:6px;
+    font-family:'Alex Brush', cursive;
+    font-size:65px;
     text-align:center;
-    margin-bottom:40px;
+    margin-bottom:50px;
     color:#e9d5ff;
-    text-transform:uppercase;
     text-shadow:
-        0 0 6px rgba(168,85,247,0.9),
-        0 0 18px rgba(147,51,234,0.8),
-        0 0 35px rgba(126,34,206,0.6);
+        0 0 8px #c084fc,
+        0 0 25px #a855f7,
+        0 0 50px #9333ea;
+    animation:encender 3s ease-in-out infinite alternate;
+}
+
+@keyframes encender{
+    from{opacity:0.8;}
+    to{opacity:1;}
 }
 
 /* TEXTO */
 .texto{
-    font-size:19px;
-    line-height:2;
+    font-size:20px;
+    line-height:2.1;
     text-align:justify;
-    color:#f8f0ff;
+    color:#f3e8ff;
 }
 
 /* FRASES */
 .frases{
-    margin-top:60px;
+    margin-top:70px;
     text-align:center;
 }
 
-/* Frase romántica morada elegante */
+/* Frase romántica morada */
 .frase-morada{
-    font-size:21px;
-    color:#c084fc;
-    margin-bottom:25px;
-    letter-spacing:1px;
+    font-size:22px;
+    color:#d8b4fe;
+    margin-bottom:30px;
 }
 
-/* Te amo rojo pasión elegante */
-@keyframes latidoSuave{
+/* Te amo rojo pasión */
+@keyframes latido{
     0%{transform:scale(1);}
-    50%{transform:scale(1.06);}
+    50%{transform:scale(1.08);}
     100%{transform:scale(1);}
 }
 
 .te-amo{
-    font-size:34px;
-    font-weight:600;
-    color:#ff2e2e;
-    text-shadow:0 0 15px rgba(255,0,0,0.7);
-    animation:latidoSuave 2.5s infinite;
-    margin-bottom:25px;
+    font-size:38px;
+    font-weight:bold;
+    color:#ff1a1a;
+    text-shadow:0 0 20px #ff0000;
+    animation:latido 2.2s infinite;
+    margin-bottom:30px;
 }
 
-/* Promesa */
+/* Promesa dorada con brillo */
 .promesa{
-    font-size:20px;
+    font-size:21px;
     font-style:italic;
-    color:#ffe7b0;
+    background:linear-gradient(90deg,#fff5cc,#ffd700,#fff5cc);
+    background-size:200% auto;
+    color:transparent;
+    -webkit-background-clip:text;
+    animation:brillo 4s linear infinite;
+}
+
+@keyframes brillo{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
 }
 
 @media(max-width:480px){
     .neon-palabra{
-        font-size:30px;
-        letter-spacing:4px;
+        font-size:45px;
     }
     .texto{
-        font-size:16px;
+        font-size:17px;
     }
 }
 
@@ -212,10 +234,10 @@ Te amo con la intensidad de un corazón que late solo por ti, un corazón que re
 <div class="promesa">
 Prometo elegirte cada día, incluso en los momentos más difíciles, cuando las sombras amenacen con oscurecer nuestro camino. En esos instantes, seré la luz que te guíe, el refugio donde encuentres consuelo y la mano que nunca dejará de sostenerte. Juntos, construiremos un amor verdadero, consciente y eterno, un lazo indestructible que florecerá en las adversidades y se fortalecerá con cada desafío que enfrentemos. Seré tu compañero en esta travesía, compartiendo risas y lágrimas, sueños y realidades, creando un universo donde nuestras almas se entrelacen en armonía. Cada día será una nueva oportunidad para redescubrirte, para amarte con más profundidad y para celebrar la belleza de nuestra conexión, un amor que trasciende el tiempo y que brilla con la intensidad de mil estrellas.
 </div>
-
+    
 </div>
 
 </div>
 
 </body>
-    </html>
+</html>
