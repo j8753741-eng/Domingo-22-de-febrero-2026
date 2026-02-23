@@ -77,36 +77,27 @@ canvas{
 }
 @keyframes abrir{to{transform:rotateX(0);}}
 
-/* NOMBRE CON GALAXIA */
-.nombre-container{
-    position:relative;
-    margin-bottom:70px;
-}
-
 .nombre{
     font-size:90px;
     font-weight:700;
     letter-spacing:2px;
     text-align:center;
-    background: url('https://i.imgur.com/9QZ7bQH.jpg');
-    background-size:cover;
+
+    /* Galaxia más vibrante */
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e0aaff 10%, #c77dff 25%, #7b2cbf 50%, #3c096c 75%, #240046 100%);
+    background-size:200% 200%;
     -webkit-background-clip:text;
-    color:transparent;
-    animation:galaxia 20s linear infinite, revelarNombre 4s ease forwards 3s;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));
+    -webkit-text-fill-color:transparent;
+
+    animation: galaxia 12s linear infinite, revelarNombre 4s ease forwards 2s;
+
+    /* Brillo elegante */
     text-shadow:
-        1px 1px 0 rgba(255,255,255,0.2),
-        -1px -1px 0 rgba(0,0,0,0.6);
+        0 0 10px rgba(199,125,255,0.8),
+        0 0 25px rgba(123,44,191,0.6),
+        0 0 40px rgba(90,24,154,0.5);
+
     opacity:0;
-}
-
-@keyframes galaxia{
-    from{background-position:0 0;}
-    to{background-position:1000px 0;}
-}
-
-@keyframes revelarNombre{
-    to{opacity:1;}
 }
 
 /* POLVO BRILLANTE */
