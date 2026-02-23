@@ -5,17 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carta Suprema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-
 body{
     margin:0;
-    padding:0;
-    overflow-x:hidden;
-    background:#040012;
+    background:#050014;
     font-family:'Playfair Display', serif;
     color:white;
+    overflow-x:hidden;
 }
 
 /* CANVAS CONSTELACIONES */
@@ -26,90 +24,110 @@ canvas{
     z-index:-1;
 }
 
-/* Animación revelación */
-.revelar{
-    opacity:0;
-    transform:translateY(40px);
-    animation:revelar 2s ease forwards;
-}
-
-@keyframes revelar{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* VIDEO */
+/* VIDEO transición elegante */
 .video-container{
     width:90%;
     max-width:750px;
-    margin:50px auto;
+    margin:40px auto;
     border-radius:25px;
     overflow:hidden;
-    box-shadow:0 25px 60px rgba(128,0,255,0.5);
+    box-shadow:0 20px 60px rgba(140,0,255,0.6);
+    opacity:0;
+    animation:fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn{
+    to{opacity:1;}
 }
 
 /* SOBRE */
 .sobre{
     width:90%;
-    max-width:850px;
-    margin:60px auto 100px auto;
+    max-width:900px;
+    margin:60px auto 120px auto;
     perspective:2000px;
+    text-align:center;
+}
+
+.sello{
+    width:120px;
+    height:120px;
+    background:radial-gradient(circle,#ffd700,#b8860b);
+    border-radius:50%;
+    margin:0 auto -60px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    box-shadow:0 0 40px gold;
+    animation:sellar 2s ease forwards;
+}
+
+@keyframes sellar{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
 }
 
 .carta{
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(25px);
     border-radius:40px;
-    padding:90px 50px;
-    box-shadow:0 0 120px rgba(168,85,247,0.25);
+    padding:100px 60px;
+    box-shadow:0 0 150px rgba(168,85,247,0.3);
     transform-origin:top;
+    transform:rotateX(-90deg);
     animation:abrir 2s ease forwards;
+    animation-delay:2.2s;
 }
 
 @keyframes abrir{
-    from{
-        transform:rotateX(-90deg);
-        opacity:0;
-    }
     to{
         transform:rotateX(0);
-        opacity:1;
     }
 }
 
-/* NEON ESCRITURA */
-.neon-palabra{
-    font-family:'Allura', cursive;
-    font-size:80px;
-    text-align:center;
-    margin-bottom:60px;
-    color:#e9d5ff;
-    border-right:3px solid #c084fc;
-    white-space:nowrap;
-    overflow:hidden;
-    width:0;
-    animation:escribir 4s steps(30) forwards, cursor 1s infinite;
-    text-shadow:
-        0 0 10px #c084fc,
-        0 0 25px #a855f7,
-        0 0 50px #9333ea;
+/* NOMBRE SVG */
+.nombre-svg{
+    width:100%;
+    max-width:1000px;
+    margin:0 auto 60px auto;
+}
+
+.nombre-svg text{
+    fill:none;
+    stroke:#d8b4fe;
+    stroke-width:2;
+    stroke-dasharray:1200;
+    stroke-dashoffset:1200;
+    animation:escribir 4s ease forwards 3s;
+    font-size:70px;
 }
 
 @keyframes escribir{
-    from{width:0;}
-    to{width:100%;}
+    to{
+        stroke-dashoffset:0;
+    }
 }
 
-@keyframes cursor{
-    0%,100%{border-color:transparent;}
-    50%{border-color:#c084fc;}
+/* Chispa */
+.chispa{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 0 15px #c084fc;
+    animation:brillar 1s ease infinite alternate;
+}
+
+@keyframes brillar{
+    from{opacity:0.3;}
+    to{opacity:1;}
 }
 
 /* TEXTO */
 .texto{
-    font-size:24px;
+    font-size:26px;
     line-height:2.2;
     text-align:justify;
     color:#f3e8ff;
@@ -121,14 +139,12 @@ canvas{
     text-align:center;
 }
 
-/* FRASE MORADA */
 .frase-morada{
-    font-size:26px;
-    color:#d8b4fe;
-    margin-bottom:35px;
+    font-size:28px;
+    color:#c084fc;
+    margin-bottom:40px;
 }
 
-/* TE AMO */
 @keyframes latido{
     0%{transform:scale(1);}
     50%{transform:scale(1.1);}
@@ -136,18 +152,15 @@ canvas{
 }
 
 .te-amo{
-    font-size:48px;
-    font-weight:bold;
+    font-size:50px;
     color:#ff1a1a;
-    text-shadow:0 0 25px #ff0000;
-    animation:latido 2.3s infinite;
-    margin-bottom:35px;
+    text-shadow:0 0 30px red;
+    animation:latido 2.5s infinite;
+    margin-bottom:40px;
 }
 
-/* PROMESA */
 .promesa{
-    font-size:25px;
-    font-style:italic;
+    font-size:28px;
     background:linear-gradient(90deg,#fff5cc,#ffd700,#fff5cc);
     background-size:200%;
     -webkit-background-clip:text;
@@ -161,8 +174,8 @@ canvas{
 }
 
 @media(max-width:480px){
-    .neon-palabra{font-size:55px;}
-    .texto{font-size:20px;}
+    .texto{font-size:22px;}
+    .nombre-svg text{font-size:45px;}
     .te-amo{font-size:38px;}
 }
 
@@ -171,26 +184,28 @@ canvas{
 
 <body>
 
-<canvas id="estrellas"></canvas>
+<canvas id="constelaciones"></canvas>
 
-<div class="video-container revelar">
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/8qPG-f8ECNM"
-frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+<div class="video-container">
+<iframe id="player" width="100%" height="315"
+src="https://www.youtube.com/embed/8qPG-f8ECNM?autoplay=1&mute=1"
+allow="autoplay; encrypted-media"
 allowfullscreen>
 </iframe>
 </div>
 
-<div class="sobre revelar">
+<div class="sobre">
+<div class="sello">💎</div>
+
 <div class="carta">
 
-<div class="neon-palabra">
-Valeria Isabel Petro Villazón 
-</div>
-<div class="neon-palabra">
-<STRONG>MI AMOR, MI VIDA ENTERA </STRONG>
-</div>
+<svg class="nombre-svg" viewBox="0 0 1000 120">
+<text x="50%" y="70%" text-anchor="middle">
+<p><<strong>Valeria Isabel Petro Villazón</strong></p>
+    <p><strong>MI AMOR, MI VIDA ENTERA</strong></p>
+</text>
+</svg>
+
 
 <div class="texto">
 Esta noche tiene algo distinto, un aire de magia que me envuelve como un abrazo cálido en medio del frío. El aire se siente más suave, acariciando mi piel como un susurro de tu voz, recordándome que cada instante a tu lado es un regalo invaluable. Las estrellas brillan con una intensidad renovada, como si cada una de ellas estuviera parpadeando solo para nosotros, celebrando nuestra conexión única y especial. Y el silencio, ese silencio tan profundo y envolvente, tiene tu nombre escrito en cada rincón, como un eco de mi corazón que te llama, como si el universo entero conspirara para que nuestras almas se encuentren en este momento.
@@ -265,19 +280,17 @@ Prometo elegirte cada día, incluso en los momentos más difíciles, cuando las 
 </div>
 
 <script>
-const canvas = document.getElementById("estrellas");
+/* CONSTELACIONES REALES */
+const canvas = document.getElementById("constelaciones");
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let stars = [];
-for(let i=0;i<120;i++){
+let stars=[];
+for(let i=0;i<100;i++){
     stars.push({
         x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        r:Math.random()*2,
-        d:Math.random()*0.5
+        y:Math.random()*canvas.height
     });
 }
 
@@ -286,19 +299,27 @@ function draw(){
     ctx.fillStyle="white";
     stars.forEach(s=>{
         ctx.beginPath();
-        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.arc(s.x,s.y,2,0,Math.PI*2);
         ctx.fill();
-        s.y += s.d;
-        if(s.y>canvas.height) s.y=0;
     });
+
+    ctx.strokeStyle="rgba(200,150,255,0.3)";
+    for(let i=0;i<stars.length;i++){
+        for(let j=i+1;j<stars.length;j++){
+            let dx=stars[i].x-stars[j].x;
+            let dy=stars[i].y-stars[j].y;
+            let dist=Math.sqrt(dx*dx+dy*dy);
+            if(dist<120){
+                ctx.beginPath();
+                ctx.moveTo(stars[i].x,stars[i].y);
+                ctx.lineTo(stars[j].x,stars[j].y);
+                ctx.stroke();
+            }
+        }
+    }
 }
 
-setInterval(draw,33);
-
-window.addEventListener("resize",()=>{
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-});
+setInterval(draw,40);
 </script>
 
 </body>
