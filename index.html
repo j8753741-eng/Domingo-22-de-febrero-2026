@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carta Suprema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -16,15 +16,15 @@ body{
     overflow-x:hidden;
 }
 
-/* CANVAS CONSTELACIONES */
+/* FONDO CONSTELACIONES */
 canvas{
     position:fixed;
     top:0;
     left:0;
-    z-index:-1;
+    z-index:-2;
 }
 
-/* VIDEO transición elegante */
+/* VIDEO */
 .video-container{
     width:90%;
     max-width:750px;
@@ -35,15 +35,12 @@ canvas{
     opacity:0;
     animation:fadeIn 3s ease forwards;
 }
-
-@keyframes fadeIn{
-    to{opacity:1;}
-}
+@keyframes fadeIn{to{opacity:1;}}
 
 /* SOBRE */
 .sobre{
     width:90%;
-    max-width:900px;
+    max-width:950px;
     margin:60px auto 120px auto;
     perspective:2000px;
     text-align:center;
@@ -62,7 +59,6 @@ canvas{
     box-shadow:0 0 40px gold;
     animation:sellar 2s ease forwards;
 }
-
 @keyframes sellar{
     from{transform:scale(0);}
     to{transform:scale(1);}
@@ -70,59 +66,63 @@ canvas{
 
 .carta{
     background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(25px);
-    border-radius:40px;
-    padding:100px 60px;
+    backdrop-filter:blur(30px);
+    border-radius:50px;
+    padding:110px 70px;
     box-shadow:0 0 150px rgba(168,85,247,0.3);
     transform-origin:top;
     transform:rotateX(-90deg);
     animation:abrir 2s ease forwards;
     animation-delay:2.2s;
 }
+@keyframes abrir{to{transform:rotateX(0);}}
 
-@keyframes abrir{
-    to{
-        transform:rotateX(0);
-    }
+/* NOMBRE CON GALAXIA */
+.nombre-container{
+    position:relative;
+    margin-bottom:70px;
 }
 
-/* NOMBRE SVG */
-.nombre-svg{
-    width:100%;
-    max-width:1000px;
-    margin:0 auto 60px auto;
+.nombre{
+    font-size:90px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-align:center;
+    background: url('https://i.imgur.com/9QZ7bQH.jpg');
+    background-size:cover;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:galaxia 20s linear infinite, revelarNombre 4s ease forwards 3s;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));
+    text-shadow:
+        1px 1px 0 rgba(255,255,255,0.2),
+        -1px -1px 0 rgba(0,0,0,0.6);
+    opacity:0;
 }
 
-.nombre-svg text{
-    fill:none;
-    stroke:#d8b4fe;
-    stroke-width:2;
-    stroke-dasharray:1200;
-    stroke-dashoffset:1200;
-    animation:escribir 4s ease forwards 3s;
-    font-size:70px;
+@keyframes galaxia{
+    from{background-position:0 0;}
+    to{background-position:1000px 0;}
 }
 
-@keyframes escribir{
-    to{
-        stroke-dashoffset:0;
-    }
-}
-
-/* Chispa */
-.chispa{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#fff;
-    border-radius:50%;
-    box-shadow:0 0 15px #c084fc;
-    animation:brillar 1s ease infinite alternate;
-}
-
-@keyframes brillar{
-    from{opacity:0.3;}
+@keyframes revelarNombre{
     to{opacity:1;}
+}
+
+/* POLVO BRILLANTE */
+.spark{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 10px #c084fc,0 0 20px #9333ea;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(400px);opacity:0;}
 }
 
 /* TEXTO */
@@ -140,7 +140,7 @@ canvas{
 }
 
 .frase-morada{
-    font-size:28px;
+    font-size:30px;
     color:#c084fc;
     margin-bottom:40px;
 }
@@ -152,7 +152,7 @@ canvas{
 }
 
 .te-amo{
-    font-size:50px;
+    font-size:55px;
     color:#ff1a1a;
     text-shadow:0 0 30px red;
     animation:latido 2.5s infinite;
@@ -160,7 +160,7 @@ canvas{
 }
 
 .promesa{
-    font-size:28px;
+    font-size:30px;
     background:linear-gradient(90deg,#fff5cc,#ffd700,#fff5cc);
     background-size:200%;
     -webkit-background-clip:text;
@@ -174,11 +174,10 @@ canvas{
 }
 
 @media(max-width:480px){
+    .nombre{font-size:50px;}
     .texto{font-size:22px;}
-    .nombre-svg text{font-size:45px;}
     .te-amo{font-size:38px;}
 }
-
 </style>
 </head>
 
@@ -187,7 +186,7 @@ canvas{
 <canvas id="constelaciones"></canvas>
 
 <div class="video-container">
-<iframe id="player" width="100%" height="315"
+<iframe width="100%" height="315"
 src="https://www.youtube.com/embed/8qPG-f8ECNM?autoplay=1&mute=1"
 allow="autoplay; encrypted-media"
 allowfullscreen>
@@ -199,12 +198,12 @@ allowfullscreen>
 
 <div class="carta">
 
-<svg class="nombre-svg" viewBox="0 0 1000 120">
-<text x="50%" y="70%" text-anchor="middle">
-<p><<strong>Valeria Isabel Petro Villazón</strong></p>
-    <p><strong>MI AMOR, MI VIDA ENTERA</strong></p>
-</text>
-</svg>
+<div class="nombre-container">
+<div class="nombre">
+<P><STRONG>Valeria Isabel Petro Villazón</STRONG></P>
+    <P><STRONG>MI AMOR, MI VIDA ENTERA</STRONG></P>
+</div>
+</div>
 
 
 <div class="texto">
@@ -280,46 +279,58 @@ Prometo elegirte cada día, incluso en los momentos más difíciles, cuando las 
 </div>
 
 <script>
-/* CONSTELACIONES REALES */
-const canvas = document.getElementById("constelaciones");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+/* CONSTELACIONES */
+const canvas=document.getElementById("constelaciones");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
 let stars=[];
-for(let i=0;i<100;i++){
-    stars.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height
-    });
+for(let i=0;i<120;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height});
 }
 
 function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="white";
-    stars.forEach(s=>{
-        ctx.beginPath();
-        ctx.arc(s.x,s.y,2,0,Math.PI*2);
-        ctx.fill();
-    });
-
-    ctx.strokeStyle="rgba(200,150,255,0.3)";
-    for(let i=0;i<stars.length;i++){
-        for(let j=i+1;j<stars.length;j++){
-            let dx=stars[i].x-stars[j].x;
-            let dy=stars[i].y-stars[j].y;
-            let dist=Math.sqrt(dx*dx+dy*dy);
-            if(dist<120){
-                ctx.beginPath();
-                ctx.moveTo(stars[i].x,stars[i].y);
-                ctx.lineTo(stars[j].x,stars[j].y);
-                ctx.stroke();
-            }
-        }
-    }
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,2,0,Math.PI*2);
+ctx.fill();
+});
+ctx.strokeStyle="rgba(200,150,255,0.3)";
+for(let i=0;i<stars.length;i++){
+for(let j=i+1;j<stars.length;j++){
+let dx=stars[i].x-stars[j].x;
+let dy=stars[i].y-stars[j].y;
+let dist=Math.sqrt(dx*dx+dy*dy);
+if(dist<120){
+ctx.beginPath();
+ctx.moveTo(stars[i].x,stars[i].y);
+ctx.lineTo(stars[j].x,stars[j].y);
+ctx.stroke();
 }
-
+}
+}
+}
 setInterval(draw,40);
+
+/* POLVO BRILLANTE */
+setTimeout(()=>{
+for(let i=0;i<60;i++){
+let spark=document.createElement("div");
+spark.className="spark";
+spark.style.left=Math.random()*window.innerWidth+"px";
+spark.style.top="200px";
+spark.style.animationDelay=Math.random()+"s";
+document.body.appendChild(spark);
+}
+},5000);
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
 </script>
 
 </body>
